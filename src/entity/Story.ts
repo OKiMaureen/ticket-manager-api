@@ -3,8 +3,9 @@ import User from "./User";
 
 
 export enum TicketStatus {
-    Approve,
-    Reject
+    APPROVED="approved",
+    REJECTED="rejected",
+    PENDING="pending"
   }
 
 @Entity()
@@ -28,7 +29,11 @@ export default class Story {
     @Column()
     public estimatedTime!: Date;
 
-    @Column('int')
+    @Column({
+        type: "enum",
+        enum: TicketStatus,
+        default: TicketStatus.PENDING
+    })
     public ticketStatus!: TicketStatus;
 
     @Column()

@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, OneToMany, Column} from "typeorm";
-import { Length, IsNotEmpty, IsEmail, MinLength,IsEnum } from "class-validator";
+import { Length, IsNotEmpty, IsEmail, IsAlphanumeric} from "class-validator";
 import * as bcrypt from "bcrypt";
 import Story from "./Story";
 
@@ -12,10 +12,27 @@ export default class User {
     @Column({
     type: "varchar",
     length: 20,
+    })
+    @Length(4, 20, {message: "Firstname must be between 4 and 20 characters."})
+    @IsNotEmpty({message: "Firstname is required."})
+    public firstName!: string;
+
+    @Column({
+    type: "varchar",
+    length: 20,
+    })
+    @Length(4, 20, {message: "Lastname must be between 4 and 20 characters."})
+    @IsNotEmpty({message: "Lastname is required."})
+    public lastName!: string;
+
+    @Column({
+    type: "varchar",
+    length: 20,
     unique: true,
     })
-    @Length(4, 20)
-    @IsNotEmpty()
+    @IsAlphanumeric(undefined,{message: "Username must be alphanumeric."})
+    @Length(4, 20, {message: "Username must be between 4 and 20 characters."})
+    @IsNotEmpty({message: "Username is required."})
     public userName!: string;
 
     @Column({
@@ -26,8 +43,8 @@ export default class User {
     public email!: string;
 
     @Column()
-    @Length(4, 100)
-    @IsNotEmpty()
+    @Length(4, 1000000,{message: "Password must be more than 4 characters."})
+    @IsNotEmpty({message: "Password is required."})
     public password!: string;
     
     @Column({

@@ -5,6 +5,8 @@ export class AdminUser1584097962374 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         let user = new User();
+        user.firstName = "admin";
+        user.lastName = "admin";
         user.userName = "adminuser";
         user.password = "admin";
         user.email = "admin@gmail.com";

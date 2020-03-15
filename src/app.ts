@@ -1,41 +1,34 @@
-import dotenv from "dotenv";
-import {createConnection} from "typeorm";
-import "reflect-metadata";
+import 'reflect-metadata';
+import {config}from 'dotenv';
 import express from 'express';
-import bodyParser from 'body-parser';
-import Routes from "./routes/routes"
+import {  createConnection, Connection } from 'typeorm'
+import { createServer, Server as HttpServer } from 'http';
+import Server from  '../src/config/server'
+import { logger } from '../src/config/logger';
+
 
 // initialize configuration
-dotenv.config();
-createConnection()
-  .then(async connection => {
-    // Create a new express application instance
-    new App().app
-    new App().app.listen(port, () => {
-      // tslint:disable-next-line:no-console
-      console.log(`Server is running on PORT ${port}`);
-   });
-  })
-  .catch((error:Error) => 
-   /* tslint:disable-next-line:no-console */
-  console.log(error));
+config();
+(async function main() {
+	try {
+		const connection: Connection = await createConnection();
 
+		// Init express server
+		const app: express.Application = new Server().app;
+		const server: HttpServer = createServer(app);
 
+		// Start express server
+		server.listen(process.env.PORT);
 
+		server.on('listening', () => {
+			logger.info(`listening on port ${process.env.PORT} in ${process.env.NODE_ENV} env`);
+		});
 
-const port = process.env.PORT || 8000;
-
-class App{
-   public app: express.Application = express();
-   private allRoutes: Routes = new Routes();
-   private config(): void{
-      this.app.use(bodyParser.json())
-      this.app.use(bodyParser.urlencoded({extended:false}))
-   }
-   public constructor(){
-      this.app;
-      this.config();
-      this.allRoutes.routes(this.app);
-   }
-}
-export default new App().app
+		server.on('close', () => {
+			connection.close();
+			logger.info('Server closed');
+		});
+	} catch (err) {
+		logger.error(err.stack);
+	}
+})();

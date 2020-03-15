@@ -1,20 +1,22 @@
-import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import User from "../entity/User";
-import { validate } from "class-validator";
-import  createToken  from "../utils/createToken"
+import { Request, Response } from 'express';
+import { getRepository } from 'typeorm';
+import User from '../entity/User';
+import { validate } from 'class-validator';
+import  createToken  from '../utils/createToken';
+import { success, fail, userExists, userCreated, incorrectCredentials, userLoggedIn } from "../utils/messages"
+import { utils } from 'mocha';
 
 
 export class UserController {
   public createUser = async (req: Request, res: Response) => {
     //Get parameters from the body
-    let { userName, password, email, firstName, lastName } = req.body;
+    let { userName, password, email, firstName, lastName } = req.body
     let user = new User();
-    user.userName = userName;
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
     user.password = password;
+    user.userName = userName;
   
     //Validade the parameters 
     const errors = await validate(user, { validationError: { target: false } });
@@ -36,7 +38,7 @@ export class UserController {
       await userRepository.save(user);
     } catch (error) {
       res.status(409).json({
-       message: "username or email already exists.",
+       message: 'Username or email already exists.',
        status: 'Fail',
       });
       return;
@@ -44,8 +46,8 @@ export class UserController {
   
     //Sends 201 status and created instance when saved
     res.status(201).json(
-      {message: "User Created Succesfully.",
-       status: 'Success',
+      {message: userCreated,
+       status: success,
        data: {
         user: {
           id: user.id,
@@ -71,8 +73,8 @@ export class UserController {
         user = await userRepository.findOneOrFail({ email: userNameOrEmail });
       } catch (error) {
         res.status(401).json(
-          {message: "userNameOrEmail or Password is not correct.",
-           status: 'Fail',
+          {message: incorrectCredentials,
+           status: fail,
           }
         );
         return;
@@ -83,8 +85,8 @@ export class UserController {
         user = await userRepository.findOneOrFail({ userName: userNameOrEmail });
       } catch (error) {
         res.status(401).json(
-          {message: "userNameOrEmail or Password is not correct.",
-           status: 'Fail',
+          {message: incorrectCredentials,
+           status: fail,
           }
         );
         return;
@@ -94,8 +96,8 @@ export class UserController {
     //Check encrypted password match
     if (!user.checkPassword(password)) {
       res.status(401).json(
-        {message: "userNameOrEmail or Password is not correct.",
-         status: 'Fail',
+        {message: incorrectCredentials,
+         status: fail,
         }
       );
       return;
@@ -104,8 +106,8 @@ export class UserController {
     //Create Token
     const token = createToken(user.id,user.email, user.userName)
     res.status(200).json(
-      {message: "User logged in successfully",
-       status: 'Success',
+      {message: userLoggedIn,
+       status: success,
        data: {
         user: {
           id: user.id,

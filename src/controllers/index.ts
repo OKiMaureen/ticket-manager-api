@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 class IndexController {
     public index(req: Request, res: Response) {
-      res.json({
-        message: "Welcome to ticket manager API"
+      res.status(200).json({
+        message: 'Welcome to ticket manager API'
       });
     }
   }

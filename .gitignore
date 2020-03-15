@@ -7,3 +7,7 @@ build/
 tmp/
 temp/
 ormconfig.json
+logs/
+*.log
+coverage/
+.nyc_output/

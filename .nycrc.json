@@ -1,0 +1,26 @@
+{
+    "all": false,
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "cache": false,
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "src/migrations",
+        "test/",
+        "ormconfig.ts",
+        "src/app.ts"
+    ],
+    "extension": [
+        ".ts"
+      ],
+      "require": [
+        "ts-node/register"
+      ],
+      "reporter": [
+        "text-summary",
+        "html"
+      ],
+      "sourceMap": true,
+      "instrument": true
+}

@@ -1,11 +1,11 @@
-import {Entity, PrimaryGeneratedColumn, ManyToOne, Column} from "typeorm";
-import User from "./User";
+import {Entity, PrimaryGeneratedColumn, ManyToOne, Column} from 'typeorm';
+import User from './User';
 
 
 export enum TicketStatus {
-    APPROVED="approved",
-    REJECTED="rejected",
-    PENDING="pending"
+    APPROVED='approved',
+    REJECTED='rejected',
+    PENDING='pending'
   }
 
 @Entity()
@@ -30,7 +30,7 @@ export default class Story {
     public estimatedTime!: Date;
 
     @Column({
-        type: "enum",
+        type: 'enum',
         enum: TicketStatus,
         default: TicketStatus.PENDING
     })

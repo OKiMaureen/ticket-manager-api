@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "prebuild": "eslint . --ext .ts --fix",
-    "build": "tsc",
+    "build": "tsc -b",
     "prestart": "npm run build",
     "start": "node .",
     "start:dev": "NODE_ENV=development nodemon --watch src --exec ts-node src/app.ts",

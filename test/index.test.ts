@@ -6,7 +6,7 @@ import Server from '../src/config/server';
 const { expect } = chai;
 chai.use(chaiHttp);
 describe('Test default route', () => {
-  let App = new Server().app
+  const App = new Server().app
   it('Should return 200 for the default route', (done) => {
     chai.request(App)
       .get('/')

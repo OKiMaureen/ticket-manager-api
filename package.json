@@ -4,20 +4,34 @@
   "description": "A simple ticket manager app",
   "main": "dist/app.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "tsc",
+    "prebuild": "eslint . --ext .ts --fix",
+    "build": "tsc -b",
     "prestart": "npm run build",
-    "start": "node .",
-    "start:dev": "nodemon --watch src --exec ts-node src/app.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development ts-node src/app.ts",
+    "start:dev": "NODE_ENV=development nodemon --watch src --exec ts-node src/app.ts",
+    "migration:run": "NODE_ENV=development ts-node ./node_modules/typeorm/cli.js migration:run -c development",
+    "test": "NODE_ENV=test nyc mocha -r ts-node/register test/**/*.test.ts && npm run test:cov",
+    "test:cov": "nyc report --reporter=lcov --reporter=text",
+    "coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Maureen Okafor",
   "license": "MIT",
   "dependencies": {
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.3",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "class-validator": "^0.11.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "pg": "^7.18.2",
+    "pg-hstore": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -27,12 +41,49 @@
     "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.6",
     "@babel/runtime": "^7.8.7",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/bcrypt": "^3.0.0",
+    "@types/bluebird": "^3.5.30",
+    "@types/chai": "^4.2.11",
+    "@types/chai-like": "^1.1.0",
+    "@types/chai-things": "0.0.34",
+    "@types/dotenv": "^8.2.0",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.1",
+    "@types/supertest": "^2.0.8",
+    "@types/validator": "^12.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
     "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "chai-like": "^1.1.1",
+    "chai-things": "^0.2.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^7.1.0",
     "nodemon": "^2.0.2",
+    "nyc": "^15.0.0",
+    "remap-istanbul": "^0.13.0",
+    "source-map-support": "^0.5.16",
+    "supertest": "^4.0.2",
+    "thai": "^1.1.2",
+    "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
     "typescript": "^3.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

@@ -1,3 +1,14 @@
 node_modules/
 .env
 dist/
+.idea/
+.vscode/
+build/
+tmp/
+temp/
+ormconfig.json
+logs/
+*.log
+coverage/
+.nyc_output/
+logs/

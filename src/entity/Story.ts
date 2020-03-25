@@ -48,9 +48,9 @@ export default class Story {
     })
     public ticketStatus!: TicketStatus;
 
-    @OneToOne(() => User)
+    @ManyToOne(() => User)
 
-    @JoinColumn()
+    @JoinColumn({name: "assigneeId"})
     public assignee!: User;
 
     @ManyToOne(

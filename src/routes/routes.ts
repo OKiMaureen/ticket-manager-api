@@ -18,9 +18,8 @@ class Routes {
     app.post('/api/v1/auth/signin', this.userController.loginUser);
     app.post('/api/v1/stories/user', authenticate, this.storyController.createStory);
     app.get('/api/v1/stories/user', authenticate, this.storyController.userListAllStories);
-    app.get('/api/v1/stories/user', authenticate, this.storyController.userListAllStories);
     app.get('/api/v1/stories/admin', authenticate, authenticateAdmin, this.storyController.adminListAllStories);
-    app.post('/api/v1/story/:id/assign', authenticate, this.storyController.assignStory);
+    app.put('/api/v1/story/:id/assign', authenticate, this.storyController.assignStory);
     app.put('/api/v1/story/:id/approve', authenticate, authenticateAdmin, findStoryById, this.storyController.approve);
     app.put('/api/v1/story/:id/reject', authenticate, authenticateAdmin, findStoryById, this.storyController.reject);
   }

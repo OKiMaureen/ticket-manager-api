@@ -99,7 +99,7 @@ export default class StoryController {
       const userId = res.locals.jwtPayload.id;
       const storyId = parseInt(req.params.id, 10);
       let admin: User;
-      let story: Story;
+      let story;
       const { adminId } = req.body;
       try {
         story = await storyRepository.findOneOrFail({
@@ -133,14 +133,12 @@ export default class StoryController {
         );
         return;
       }
-      story = await storyRepository.save({
 
-        ...story,
-        assignee: {
-          id: adminId,
-        },
+      story =await storyRepository.update(storyId, { assignee: {
+                id: adminId,
+              }, 
       });
-
+      
       const assignedStory = await storyRepository.createQueryBuilder('story')
         .where({ id: storyId })
         .select(['story', 'assignee.id', 'assignee.userName', 'assignee.email'])

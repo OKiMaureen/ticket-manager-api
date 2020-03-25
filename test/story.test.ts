@@ -264,6 +264,8 @@ describe('Test Story', () => {
                     }
                 });
         });
+    });
+    describe('GET /api/v1/stories/admin', () => {
         it('should get all users stories for an admin', (done) => {
             factory.app
                 .get(`${adminStoryUrl}`)
@@ -286,9 +288,11 @@ describe('Test Story', () => {
                     }
                 });
         });
+    });
+    describe('PUT /api/v1/story/:id/assign', () => {
         it('should assign a user story to an admin successfully', (done) => {
             factory.app
-                .post(`${assignStoryUrl}`)
+                .put(`${assignStoryUrl}`)
                 .set('token', userToken)
                 .send({
                     adminId: 3,
@@ -321,7 +325,7 @@ describe('Test Story', () => {
         });
         it('should not assign a user story to an admin if story id is not found', (done) => {
             factory.app
-                .post(`${assignStoryUrlWithWrongStoryId}`)
+                .put(`${assignStoryUrlWithWrongStoryId}`)
                 .set('token', userToken)
                 .send({
                     adminId: 3,
@@ -341,7 +345,7 @@ describe('Test Story', () => {
         });
         it('should not assign a user story to an admin if admin id is not found', (done) => {
             factory.app
-                .post(`${assignStoryUrl}`)
+                .put(`${assignStoryUrl}`)
                 .set('token', userToken)
                 .send({
                     adminId: 30,
@@ -359,6 +363,8 @@ describe('Test Story', () => {
                     }
                 });
         });
+    });
+    describe('PUT /api/v1/story/:id/approve', () => {
         it('should approve a pending story', (done) => {
             factory.app
                 .put(`${approveUrl}`)
@@ -454,6 +460,8 @@ describe('Test Story', () => {
                     }
                 });
         });
+    });
+    describe('PUT /api/v1/story/:id/reject', () => {
         it('should not reject a rejected story', (done) => {
             factory.app
                 .put(`${rejectUrl}`)

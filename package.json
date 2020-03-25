@@ -7,7 +7,7 @@
     "prebuild": "eslint . --ext .ts --fix",
     "build": "tsc -b",
     "prestart": "npm run build",
-    "start": "node .",
+    "start": "NODE_ENV=development ts-node src/app.ts",
     "start:dev": "NODE_ENV=development nodemon --watch src --exec ts-node src/app.ts",
     "migration:run": "NODE_ENV=development ts-node ./node_modules/typeorm/cli.js migration:run -c development",
     "test": "NODE_ENV=test nyc mocha -r ts-node/register test/**/*.test.ts && npm run test:cov",

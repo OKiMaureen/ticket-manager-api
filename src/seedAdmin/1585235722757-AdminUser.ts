@@ -11,7 +11,7 @@ export class AdminUser1584097962374 implements MigrationInterface {
     user.email = 'admin@gmail.com';
     user.hashPassword();
     user.role = 'admin';
-    const userRepository = getRepository(User, 'development');
+    const userRepository = getRepository(User, 'seed');
     await userRepository.save(user);
   }
 

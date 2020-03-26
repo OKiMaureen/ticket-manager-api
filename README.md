@@ -58,16 +58,20 @@ create a ".env" file and copy contents from "example.env" into it. Modify the fo
 a) PORT
 b) JWT_SECRET
 ```
-5. Seed Admin into database by running the migration script.
+5. Create user table by running the migration script.
 ```
 e.g npm run migration
 ```
+5. Seed admin user by running the seed script.
+```
+e.g npm run seed
+```
 
-6. Start the application by running the start script.
+7. Start the application by running the start script.
 ```
 e.g npm start
 ```
-7. Call all endpoints locally on port provided in env.
+8. Call all endpoints locally on port provided in env.
 
 
 ### Test

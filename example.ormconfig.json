@@ -2,11 +2,11 @@
     {
         "name": "development",
         "environment": "development",
-        "type": "database type",
+        "type": "development database type",
         "host": "localhost",
-        "port": "database port(a number)",
-        "username": "database username",
-        "database": "database name",
+        "port": "development database port number",
+        "username": "development database username",
+        "database": "development database name",
         "synchronize": true,
         "logging": false,
         "migrationsTableName": "custom_migration_table",
@@ -30,25 +30,39 @@
         "environment": "test",
         "type": "test database type",
         "host": "localhost",
-        "port": "test database port",
+        "port": "test database port number",
         "username": "test database username",
         "database": "test database name",
         "synchronize": true,
         "dropSchema": true,
         "logging": false,
-        "migrationsTableName": "custom_migration_table",
+        "entities": [
+            "src/entity/**/*.ts"
+        ]
+    },
+    {
+        "name": "seed",
+        "environment": "development",
+        "type": "development database type",
+        "host": "localhost",
+        "port": "development database port number",
+        "username": "development database username",
+        "database": "development database name",
+        "synchronize": true,
+        "logging": false,
+        "migrationsTableName": "custom_migration_seed_admin",
         "entities": [
             "src/entity/**/*.ts"
         ],
         "migrations": [
-            "src/migrationTest/**/*.ts"
+            "src/seedAdmin/**/*.ts"
         ],
         "subscribers": [
             "src/subscriber/**/*.ts"
         ],
         "cli": {
             "entitiesDir": "src/entity",
-            "migrationsDir": "src/migration",
+            "migrationsDir": "src/seedAdmin",
             "subscribersDir": "src/subscriber"
         }
     }

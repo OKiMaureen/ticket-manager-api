@@ -6,7 +6,6 @@ dist/
 build/
 tmp/
 temp/
-ormconfig.json
 logs/
 *.log
 coverage/

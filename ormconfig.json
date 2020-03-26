@@ -1,55 +1,55 @@
 [
-   {
-      "name": "development",
-      "environment": "development",
-      "type": "postgres",
-      "host": "localhost",
-      "port": 5432,
-      "username": "postgres",
-      "database": "ticketmanager",
-      "synchronize": true,
-      "logging": false,
-      "migrationsTableName": "custom_migration_table",
-      "entities": [
-         "src/entity/**/*.ts"
-      ],
-      "migrations": [
-         "src/migration/**/*.ts"
-      ],
-      "subscribers": [
-         "src/subscriber/**/*.ts"
-      ],
-      "cli": {
-         "entitiesDir": "src/entity",
-         "migrationsDir": "src/migration",
-         "subscribersDir": "src/subscriber"
-      }
-   },
-   {
-      "name": "test",
-      "environment": "test",
-      "type": "postgres",
-      "host": "localhost",
-      "port": 5432,
-      "username": "postgres",
-      "database": "ticketmanagerTest",
-      "synchronize": true,
-      "dropSchema": true,
-      "logging": false,
-      "migrationsTableName": "custom_migration_table",
-      "entities": [
-         "src/entity/**/*.ts"
-      ],
-      "migrations": [
-         "src/migrationTest/**/*.ts"
-      ],
-      "subscribers": [
-         "src/subscriber/**/*.ts"
-      ],
-      "cli": {
-         "entitiesDir": "src/entity",
-         "migrationsDir": "src/migration",
-         "subscribersDir": "src/subscriber"
-      }
-   }
+    {
+        "name": "development",
+        "environment": "development",
+        "type": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "username": "postgres",
+        "database": "ticketmanager",
+        "synchronize": true,
+        "logging": false,
+        "migrationsTableName": "custom_migration_table",
+        "entities": [
+            "src/entity/**/*.ts"
+        ],
+        "migrations": [
+            "src/migration/**/*.ts"
+        ],
+        "subscribers": [
+            "src/subscriber/**/*.ts"
+        ],
+        "cli": {
+            "entitiesDir": "src/entity",
+            "migrationsDir": "src/migration",
+            "subscribersDir": "src/subscriber"
+        }
+    },
+    {
+        "name": "test",
+        "environment": "test",
+        "type": "postgres",
+        "host": "localhost",
+        "port": 5432,
+        "username": "postgres",
+        "database": "ticketmanagerTest",
+        "synchronize": true,
+        "dropSchema": true,
+        "logging": false,
+        "migrationsTableName": "custom_migration_table",
+        "entities": [
+            "src/entity/**/*.ts"
+        ],
+        "migrations": [
+            "src/migrationTest/**/*.ts"
+        ],
+        "subscribers": [
+            "src/subscriber/**/*.ts"
+        ],
+        "cli": {
+            "entitiesDir": "src/entity",
+            "migrationsDir": "src/migration",
+            "subscribersDir": "src/subscriber"
+        }
+    }
 ]

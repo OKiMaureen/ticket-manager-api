@@ -1,4 +1,4 @@
-# Maintenance Tracker
+# Ticket Manager
 
 Ticket Manager Api is an application that allows users to create ticket stories and assign them to an admin to either approve or reject
 
@@ -41,35 +41,34 @@ e.g git clone https://github.com/OKiMaureen/ticket-manager-api
 ```
 2. Install dependencies 
 ```
-e.g npm install.
+e.g npm install
 ```
 3. Setup typeorm configurations
 ```
-create a ormconfig.json file and copy contents from example.ormconfig.json into it. Modify the following in both development and test config to match your database configurations
+create a "ormconfig.json" file and copy contents from "example.ormconfig.json" into it. Modify the following in both development and test config to match your database configurations
 
 a) type
 b) port
 c) username
 d) database
 ```
-3. Setup envconfigurations
+4. Setup env configurations
 ```
-create a .env file and copy contents from example.env into it. Modify the following as desired.
+create a ".env" file and copy contents from "example.env" into it. Modify the following as desired.
 a) PORT
 b) JWT_SECRET
 ```
-4. Seed Admin into database by runniong the migration script.
+5. Seed Admin into database by running the migration script.
 ```
 e.g npm run migration
 ```
 
+6. Start the application by running the start script.
+```
 e.g npm start
-5. Start the application by running the start script.
+```
+7. Call all endpoints locally on port 8000.
 
-e.g npm start
-
-
-5. Call all endpoints locally on port 8000.
 
 ### Test
 run test using 'npm test'.
@@ -89,7 +88,7 @@ run test using 'npm test'.
 
 <tr><td>GET</td> <td>/api/v1/stories/user</td>  <td>Gets all user stories for an admin</td></tr>
 
-<tr><td>POST</td> <td>/api/v1/story/:id/assign'</td> <td>Assign story to an admin</td></tr>
+<tr><td>POST</td> <td>/api/v1/story/:id/assign</td> <td>Assign story to an admin</td></tr>
 
 <tr><td>PUT</td> <td>/api/v1/story/:id/approve</td> <td>Approve a pending or disapproved story</td></tr>
 

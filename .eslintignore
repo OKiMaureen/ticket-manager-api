@@ -1,6 +1,2 @@
-# path/to/project/root/.eslintignore
 node_modules/* 
-
-# # Ignore built files except build/index.js
-# build/*
-# !build/index.js
+src/migration/**

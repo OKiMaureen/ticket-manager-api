@@ -9,7 +9,7 @@
     "prestart": "npm run build",
     "start": "NODE_ENV=development ts-node src/app.ts",
     "start:dev": "NODE_ENV=development nodemon --watch src --exec ts-node src/app.ts",
-    "migration:run": "NODE_ENV=development ts-node ./node_modules/typeorm/cli.js migration:run -c development",
+    "migration": "NODE_ENV=development ts-node ./node_modules/typeorm/cli.js migration:run -c development",
     "test": "NODE_ENV=test nyc mocha -r ts-node/register test/**/*.test.ts && npm run test:cov",
     "test:cov": "nyc report --reporter=lcov --reporter=text",
     "coveralls": "jscoverage lib && YOURPACKAGE_COVERAGE=1 nodeunit --reporter=lcov test | coveralls",

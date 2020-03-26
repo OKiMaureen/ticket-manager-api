@@ -98,11 +98,9 @@ export default class StoryController {
       const storyRepository = getRepository(Story);
       const userId = res.locals.jwtPayload.id;
       const storyId = parseInt(req.params.id, 10);
-      let admin: User;
-      let story;
       const { adminId } = req.body;
       try {
-        story = await storyRepository.findOneOrFail({
+        await storyRepository.findOneOrFail({
           where: {
             id: storyId,
             user: { id: userId },
@@ -118,7 +116,7 @@ export default class StoryController {
         return;
       }
       try {
-        admin = await userRepository.findOneOrFail({
+        await userRepository.findOneOrFail({
           where: {
             id: adminId,
             role: 'admin',
@@ -133,8 +131,7 @@ export default class StoryController {
         );
         return;
       }
-
-      story =await storyRepository.update(storyId, { assignee: {
+      await storyRepository.update(storyId, { assignee: {
                 id: adminId,
               }, 
       });

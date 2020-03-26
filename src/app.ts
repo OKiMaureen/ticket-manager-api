@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { config } from 'dotenv';
-import express from 'express';
 import { Connection } from 'typeorm';
 import { createServer, Server as HttpServer } from 'http';
 import { typeormConnection } from './config/connection';

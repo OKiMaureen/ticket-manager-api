@@ -14,7 +14,7 @@ const requestLog = join(logDir, 'request.log');
 const combinedLog = join(logDir, 'combined.log');
 const exceptionsLog = join(logDir, 'exceptions.log');
 
-const isRequest = format((info, opts) => {
+const isRequest = format((info) => {
   if (info.isRequest) {
     return info;
   }

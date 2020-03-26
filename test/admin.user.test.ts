@@ -9,14 +9,12 @@ chai.use(chaiHttp);
 const adminStoryUrl = '/api/v1/stories/admin';
 const signupUrl = '/api/v1/auth/signup';
 
-let adminToken: string;
 let userToken: string;
 
 
 describe('Test Admin Story', () => {
 
   const factory: TestFactory = new TestFactory()
-  const admin: MockUser = MockUser.correctAdminDetails();
   const user: MockUser = MockUser.correctUserDetails();
 
   before(async () => {
@@ -25,15 +23,6 @@ describe('Test Admin Story', () => {
   after(async () => {
     await factory.close();
   })
-  before((done) => {
-    factory.app
-      .post(`${signupUrl}`)
-      .send(admin)
-      .end((err, res) => {
-        adminToken = res.body.data.token;
-        done();
-      });
-  });
   before((done) => {
     factory.app
       .post(`${signupUrl}`)

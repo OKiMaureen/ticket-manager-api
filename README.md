@@ -43,11 +43,33 @@ e.g git clone https://github.com/OKiMaureen/ticket-manager-api
 ```
 e.g npm install.
 ```
-3. Start the application by running the start script.
+3. Setup typeorm configurations
+```
+create a ormconfig.json file and copy contents from example.ormconfig.json into it. Modify the following in both development and test config to match your database configurations
+
+a) type
+b) port
+c) username
+d) database
+```
+3. Setup envconfigurations
+```
+create a .env file and copy contents from example.env into it. Modify the following as desired.
+a) PORT
+b) JWT_SECRET
+```
+4. Seed Admin into database by runniong the migration script.
+```
+e.g npm run migration
+```
+
+e.g npm start
+5. Start the application by running the start script.
 
 e.g npm start
 
-4. Call all endpoints locally on port 8000.
+
+5. Call all endpoints locally on port 8000.
 
 ### Test
 run test using 'npm test'.

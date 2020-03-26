@@ -67,7 +67,7 @@ e.g npm run migration
 ```
 e.g npm start
 ```
-7. Call all endpoints locally on port 8000.
+7. Call all endpoints locally on port provided in env.
 
 
 ### Test
